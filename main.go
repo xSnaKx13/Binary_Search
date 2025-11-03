@@ -4,6 +4,7 @@ import (
 	"binary_search/calculation"
 	"binary_search/convert"
 	promptdata "binary_search/promptData"
+	"fmt"
 )
 
 func main() {
@@ -15,5 +16,6 @@ func main() {
 	if err != nil {
 		promptdata.PrintErr(err)
 	}
-	calculation.Calculation(firstNum, SecondNum, FindNum)
+	result, attempts := calculation.Calculation(firstNum, SecondNum, FindNum)
+	fmt.Printf("Искомое число найдено: %d\nПопыток затрачено: %d", result, attempts)
 }

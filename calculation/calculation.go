@@ -1,10 +1,6 @@
 package calculation
 
-import (
-	"fmt"
-)
-
-func Calculation(firstNum, SecondNum, FindNum int) {
+func Calculation(firstNum, SecondNum, FindNum int) (int, int) {
 	size := SecondNum - firstNum
 
 	numb := make([]int, (size + 1))
@@ -20,7 +16,6 @@ func Calculation(firstNum, SecondNum, FindNum int) {
 		attempts++
 		mid := (left + right) / 2
 		if numb[mid] == FindNum {
-			fmt.Printf("Искомое число найдено: %d\nНайдено за %d попыток", FindNum, attempts)
 			break
 		} else if numb[mid] < FindNum {
 			left = mid + 1
@@ -28,4 +23,5 @@ func Calculation(firstNum, SecondNum, FindNum int) {
 			right = mid - 1
 		}
 	}
+	return FindNum, attempts
 }
