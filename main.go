@@ -1,51 +1,19 @@
 package main
 
 import (
+	"binary_search/calculation"
+	"binary_search/convert"
 	promptdata "binary_search/promptData"
-	"fmt"
-	"strconv"
 )
 
 func main() {
-	firstNumStr := promptdata.PromptData("Введите первое число: ")
-	SecondtNumStr := promptdata.PromptData("Введите второе число: ")
-	findNumStr := promptdata.PromptData("Введите искомое число: ")
+	firstNumStr := promptdata.PromptData("Введите число начала диапазона: ")
+	SecondNumStr := promptdata.PromptData("Введите число окончания диапазона: ")
+	findNumStr := promptdata.PromptData("Введите искомое число в рамках этого диапазона: ")
 
-	firstNum, err := strconv.Atoi(firstNumStr)
+	firstNum, SecondNum, FindNum, err := convert.Convert(firstNumStr, SecondNumStr, findNumStr)
 	if err != nil {
-		fmt.Println(err)
+		promptdata.PrintErr(err)
 	}
-	SecondtNum, err := strconv.Atoi(SecondtNumStr)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	FindNum, err := strconv.Atoi(findNumStr)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	size := SecondtNum - firstNum
-
-	numb := make([]int, (size + 1))
-	for i := range numb {
-		numb[i] = i + firstNum
-	}
-
-	left := 0
-	right := len(numb) - 1
-	attempts := 0
-
-	for left <= right {
-		attempts++
-		mid := (left + right) / 2
-		if numb[mid] == FindNum {
-			fmt.Printf("Искомое число найдено: %d\nПопыток: %d", FindNum, attempts)
-			break
-		} else if numb[mid] < FindNum {
-			left = mid + 1
-		} else {
-			right = mid - 1
-		}
-	}
+	calculation.Calculation(firstNum, SecondNum, FindNum)
 }
