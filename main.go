@@ -16,6 +16,10 @@ func main() {
 	if err != nil {
 		promptdata.PrintErr(err)
 	}
-	result, attempts := calculation.Calculation(firstNum, SecondNum, FindNum)
+	result, attempts, err := calculation.Calculation(firstNum, SecondNum, FindNum)
+	if err != nil {
+		promptdata.PrintErr(err)
+		return
+	}
 	fmt.Printf("Искомое число найдено: %d\nПопыток затрачено: %d", result, attempts)
 }

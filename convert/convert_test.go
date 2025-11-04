@@ -18,10 +18,10 @@ func TestConvert_ValidNumbers(t *testing.T) {
 func TestConvert_InvalidNumber(t *testing.T) {
 	numb1 := "aaa"
 	numb2 := "40"
-	findNumb := "22"
+	findNumb := "3"
 
 	_, _, _, err := convert.Convert(numb1, numb2, findNumb)
 	if err == nil {
-		t.Errorf("Ожидалась ошибка, но ошибки нет")
+		t.Errorf("Ожидалась ошибка, но не получили")
 	}
 }
